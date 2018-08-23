@@ -1,414 +1,661 @@
 /*Global selectors*/
+
 body {
-  min-width: 1122px;
-  min-height: 1750px;
-  margin: 0;
-  padding: 0;
-
-  font-family: "PT Sans Narrow", Arial, sans-serif;
-  font-size: 14px;
-  line-height: 24px;
-  font-weight: 700;
-  color: #ffffff;
-  text-transform: uppercase;
-
-  background-color: #000000;
-  background-image: url(../Image/jpeg/BS.jpg);
-  background-position: top center;
-  background-repeat: no-repeat;
+    min-width: 1122px;
+    min-height: 1750px;
+    margin: 0;
+    padding: 0;
+    font-family: "PT Sans Narrow", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase;
+    background-color: #000000;
+    background-image: url(../Image/jpeg/BS.jpg);
+    background-position: top center;
+    background-repeat: no-repeat;
 }
+
+
 /*Работа с ссылками*/
+
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 img {
-  max-width: 100%;
-  height: auto;
+    max-width: 100%;
+    height: auto;
 }
+
+
 /* Прячем все элементы с классом visually-hidden */
+
 .visually-hidden:not(:focus):not(:active),
 input[type="checkbox"].visually-hidden,
 input[type="radio"].visually-hidden {
-  position: absolute;
-
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-
-  white-space: nowrap;
-
-  clip-path: inset(100%);
-  clip: rect(0 0 0 0);
-  overflow: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
 }
 
-.main-navigation {
-  font-size: 16px;
-  line-height: 20px;
-  color: #ffffff;
 
-  background-color: #000000;
+/* Общий размер контента сайта */
+
+.conteiner {
+    width: 940px;
+    margin: 0 auto;
+    padding: 0 10px;
 }
+
+
 /* работа с кнопками */
+
 .button {
-  /* Принудительно назначаем шрифт от body */
-  font: inherit;
-
-  text-align: center;
-  color: #ffffff;
-  vertical-align: middle;
-
-  background-color: #000000;
-  border: none;
+    /* создаём блочно-строчный элемент */
+    display: inline-block;
+    padding: 10px 30px;
+    margin-right: 16px;
+    /* Принудительно назначаем шрифт от body */
+    font: inherit;
+    text-align: center;
+    color: #ffffff;
+    vertical-align: middle;
+    background-color: #000000;
+    border: none;
 }
 
 .button:hover,
 .button:focus,
 .button:active {
-  background-color: #663d15;
+    background-color: #663d15;
 }
 
+.button.disabled,
+.button:disabled {
+    cursor: default;
+    opacity: 0.5;
+    background-color: #000000;
+}
+
+
 /* Задаём поведение ссылок */
+
 .site-navigation a:hover,
 .site-navigation a:focus,
 .user-navigation a:hover,
 .user-navigation a:focus {
-  background-color: #242424;
+    background-color: #242424;
 }
-/* Перестраиваем список лозунга, убирая стиль и ставим его по центру */
+
+
+/* ------сетка Header---- */
+
+.main-header {
+    margin-bottom: 75px;
+}
+
+.main-navigation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    font-size: 16px;
+    line-height: 20px;
+    color: #ffffff;
+    background-color: #000000;
+}
+
+.main-header-logo {
+    width: 368px;
+    height: 153px;
+    order: 2;
+}
+
+.main-navigation-wrapper {
+    width: 100%;
+    margin-bottom: 60px;
+    background-color: #000000;
+}
+
+
+/* Делаем контейнер навигации гибким(фдекс) */
+
+.main-navigation-wrapper .conteiner {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* работаем с навигацией */
+
+.site-navigation {
+    margin: 0;
+    padding: 0;
+    width: 620px;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.user-navigation {
+    margin: 0;
+    padding: 0;
+    max-width: 140px;
+    list-style: none;
+}
+
+
+/* Делаем ссылки навигации блочным элементом и задаём им отсупы и цвет шрифта*/
+
+.site-navigation a,
+.user-navigation a {
+    display: block;
+    padding: 25px 20px;
+    color: #ffffff;
+}
+
+
+/* Добавляем отступ кнопке "вход" */
+
+.user-navigation .login-link {
+    position: relative;
+    padding-left: 50px;
+}
+
+
+/* Вставляем декоративную картинку рядом со словом "Вход" */
+
+.login-link::before {
+    /* нужно чтобы появился псевдоэлемент */
+    content: "";
+    /* позиционируем псевдоэлемент */
+    position: absolute;
+    top: 27px;
+    left: 24px;
+    width: 16px;
+    height: 18px;
+    /* вставляем картинку в псевдоэлемент и задаём прозрачность */
+    background-image: url(../image/svg/login.svg);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    opacity: 0.3;
+}
+
+
+/* Задаём поведение этой картинке */
+
+.login-link:hover::before,
+.login-link:focus::before,
+.login-link:active::before {
+    opacity: 1;
+}
+
+
+/*----------- Верстаем часть с лозунгом барбершопа ----------------*/
+
+
+/* --------------------------------------------------- */
+
+.features {
+    margin-bottom: 80px;
+}
+
 .features-list {
-  list-style: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    /* Временно для сетки */
+    min-height: 170px;
 }
+
+
+/* Перестраиваем список лозунга, убирая стиль и ставим его по центру */
+
 .features-item {
-  text-align: center;
+    width: 300px;
+    text-align: center;
 }
+
+
+/* Задаём внешние отступы абзацам */
+
+.features-item p {
+    margin: 0 10px;
+}
+
+
 /* Позиционируем заголовок, задаем отступы между словами и размер шрифта*/
+
 .features-item h3 {
-  position: relative;
-
-  margin: 0;
-  margin-bottom: 60px;
-
-  font-size: 30px;
-  line-height: 42px;
+    position: relative;
+    margin: 0;
+    margin-bottom: 60px;
+    font-size: 30px;
+    line-height: 42px;
 }
-/* создаём псевдоэлемент в заголовке */
+
+
+/* -----------------создаём псевдоэлемент в заголовке --*/
+
+
 /* after - означает, что псевдоэлемент появится после последней буквы заголовка */
+
 .features-item h3::after {
-  content: "";
-
-  position: absolute;
-  /* Центруем квадратик */
-  bottom: -30px;
-  left: 50%;
-  margin-left: -10px;
-
-  width: 20px;
-  height: 20px;
-
-  background-color: #fff;
-  /* Поворачиваем квадрат и получаем ромбик */
-  transform: rotate(45deg);
+    content: "";
+    position: absolute;
+    /* Центруем квадратик */
+    bottom: -30px;
+    left: 50%;
+    margin-left: -10px;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    /* Поворачиваем квадрат и получаем ромбик */
+    transform: rotate(45deg);
 }
-/* main
-Группируем колонки*/
-.index-columns {
-  color: #000000;
 
-  background-color: #f8f5f2;
-  background-image: url(../image/jpeg/pattern_light.jpg);
-  background-position: 0 0;
-  background-repeat: repeat;
+
+/*------------------------------- Верстам новости и галлерея --------------------------*/
+
+.index-columns {
+    color: #000000;
+    background-color: #f8f5f2;
+    background-image: url(../image/jpeg/line.png), url(../image/jpeg/pattern_light.jpg);
+    background-position: center, 0 0;
+    background-repeat: no-repeat, repeat;
+    /* -----------сетка на флексах ------------*/
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 80px;
+    margin-bottom: 35px;
 }
 
 .index-columns h2 {
-  font-size: 30px;
-  line-height: 42px;
+    margin: 0;
+    margin-bottom: 25px;
+    font-size: 30px;
+    line-height: 42px;
 }
-/* Оформляем ленту новостей */
+
+
+/* ----------------Оформляем ленту новостей -----------------*/
+
+.news {
+    width: 380px;
+}
+
 .news-list {
-  list-style: none;
+    margin: 0;
+    margin-bottom: 25px;
+    padding: 0;
+    list-style: none;
 }
+
+.news-item {
+    margin-bottom: 25px;
+}
+
+.news-item p {
+    margin: 0;
+}
+
 .news-item time {
-  text-transform: none;
+    text-transform: none;
 }
-/* настраиваем фотогалерею */
+
+
+/* ------------------настраиваем фотогалерею ------------------*/
+
+.gallery {
+    width: 300px;
+}
+
 .gallery-content {
-  background-color: #cccccc;
-  border: 7px solid #ffffff;
+    height: 164px;
+    margin: 0;
+    background-color: #cccccc;
+    border: 7px solid #ffffff;
 }
 
-/* Работаем с формой "Записаться" */
+.gallery-content img {
+    width: 286px;
+    height: 164px;
+}
+
+.gallery-conteiner {
+    position: relative;
+    height: 260px;
+}
+
+.gallery-button {
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    width: 140px;
+    margin: 0;
+}
+
+.gallery-button-back {
+    left: 0;
+}
+
+.gallery-button-next {
+    right: 0;
+}
+
+
+/* ----------------------------Контакты -----------------------------*/
+
+.contacts {
+    width: 380px;
+}
+
+.contacts p {
+    margin: 0;
+    margin-bottom: 25px;
+}
+
+
+/* ------------------------Работаем с формой "Записаться" */
+
+.appointment {
+    width: 300px;
+}
+
+.appointment-info {
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+.appointment-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.appointment-item {
+    width: 140px;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.appointment-item label {
+    display: block;
+    margin-bottom: 9px;
+    margin-left: 15px;
+}
+
 .appointment-item input {
-  font: inherit;
-
-  background-color: transparent;
-  border: 2px solid #000000;
+    box-sizing: border-box;
+    width: 140px;
+    padding-top: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 7px;
+    font: inherit;
+    background-color: transparent;
+    border: 2px solid #000000;
 }
+
 .appointment-item input:focus {
-  border-color: #663d15;
+    border-color: #663d15;
 }
 
-/* Footer начало */
+.appointment .button {
+    margin-top: 10px;
+    margin-right: 0;
+    width: 100%;
+}
+
+
+/* ---------------------------Разметка footer------------------------- */
+
 .main-footer {
-  color: #ffffff;
+    padding: 60px 0;
+    margin-top: 65px;
+    color: #ffffff;
+    background-color: #212121;
+    background-image: url(../image/jpeg/pattern-darck.jpg);
+    background-repeat: repeat-x;
+}
 
-  background-color: #212121;
-  background-image: url(../image/jpeg/pattern-darck.jpg);
-  background-repeat: repeat-x;
+.main-footer .conteiner {
+    display: flex;
 }
+
+.footer-contacts {
+    width: 320px;
+    margin: 0;
+    margin-right: 80px;
+}
+
 .footer-contacts a {
-  color: #ffffff;
-  text-decoration: underline;
+    color: #ffffff;
+    text-decoration: underline;
 }
+
 .footer-contacts a:hover,
 .footer-contacts a:focus {
-  text-decoration: none;
+    text-decoration: none;
 }
-/* Ссылки соц.сетей */
+
+
+/* ------------------Ссылки соц.сетей ---------------------*/
+
 .footer-social {
-  text-align: center;
+    text-align: center;
+    width: 145px;
 }
+
 .footer-social ul {
-  list-style: none;
+    list-style: none;
 }
+
+.footer-social ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 0;
+    width: 141px;
+    list-style: none;
+}
+
+.footer-social b {
+    display: block;
+    margin-bottom: 15px;
+}
+
 .social-button {
-  color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    width: 43px;
+    height: 43px;
+    background-color: #000000;
 }
-/* Права разработчика */
+
+.social-button:hover,
+.social-button:focus {
+    background-color: #fff;
+}
+
+
+/* Заходим внутрь svg иконок */
+
+.social-button:hover path,
+.social-button:focus path {
+    fill: #000;
+}
+
+
+/* ----------------------Права правообладателя */
+
 .footer-copyright {
-  text-align: center;
+    width: 150px;
+    margin: 0;
+    margin-left: auto;
+    text-align: center;
 }
+
+.footer-copyright .button {
+    display: block;
+    margin-right: 0;
+}
+
+.Footer-copyright b {
+    display: block;
+    margin-bottom: 15px;
+}
+
 .footer-copyright .button:hover,
 .footer-copyright .button:focus {
-  color: #000000;
-
-  background-color: #ffffff;
+    color: #000000;
+    background-color: #ffffff;
 }
-/* Работа с модальными окнами */
+
+
+/* ----------------Работа с модальными окнами ----------------------*/
+
+
+/* -----Для модалок нужно задавать фиксированную позицию ------*/
+
 .modal {
-  color: #000000;
-
-  background-color: #f8f3f8;
-  background-image: url(../image/jpeg/pattern_light.jpg);
-  background-position: 0 0;
-  background-repeat: repeat;
+    position: fixed;
+    color: #000000;
+    background-color: #f8f3f8;
+    background-image: url(../image/jpeg/pattern_light.jpg);
+    background-position: 0 0;
+    background-repeat: repeat;
+    outline: 1px solid #663d15;
+    /* Делаем тень у модального окна */
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.7);
 }
-/* Поля формы */
+
+
+/* -----------------------Поля формы */
+
 .modal h2 {
-  font-size: 30px;
-  line-height: 42px;
+    margin: 0;
+    margin-bottom: 20px;
+    font-size: 30px;
+    line-height: 42px;
+}
+
+.modal-description {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.modal-login {
+    top: 120px;
+    left: 50%;
+    width: 300px;
+    padding: 50px 80px;
+    margin-left: -230px;
+}
+
+.login-form p {
+    margin: 0;
+    margin-bottom: 10px;
 }
 
 .login-form input[type="text"],
 .login-form input[type="password"] {
-  font: inherit;
-  color: #000000;
-  text-transform: uppercase;
+    box-sizing: border-box;
+    width: 300px;
+    padding: 10px 15px;
+    padding-right: 40px;
+    /* в формах Нужно принудительно наследовать текст от родителя */
+    font: inherit;
+    color: #000000;
+    text-transform: uppercase;
+    background-color: #f9f6f3;
+    border: 2px solid #000000;
+}
 
-  background-color: #f9f6f3;
-  border: 2px solid #000000;
-}
 .login-form input:focus {
-  background-color: #663d15;
+    background-color: #663d15;
 }
+
+
+/* ----------Вставляем в поля формы иконки---------- */
+
+.login-icon-user {
+    background-image: url(../Image/svg/user.svg);
+    background-position: 270px center;
+    background-repeat: no-repeat;
+}
+
+.login-icon-password {
+    background-image: url(../Image/svg/lock.svg);
+    background-position: 270px center;
+    background-repeat: no-repeat;
+}
+
+
+/* Делаем кнопку "Закрыть" */
+
+.modal-close {
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    top: 0;
+    right: -34px;
+    font-size: 0;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+
+/* Рисуем два псевдоэлемента */
+
+.modal-close::before,
+.modal-close::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 1px;
+    width: 19px;
+    height: 3px;
+    background-color: #d0d0d0;
+}
+
+
+/* Поворачиваем палочки */
+
+.modal-close::before {
+    transform: rotate(45deg);
+}
+
+.modal-close::after {
+    transform: rotate(-45deg);
+}
+
 .login-checkbox:hover,
 .login-checkbox:focus {
-  color: #663d15;
+    color: #663d15;
 }
 
 .restore {
-  color: #000000;
-  text-decoration: underline;
+    color: #000000;
+    text-decoration: underline;
 }
+
 .restore:hover,
 .restore:focus {
-  text-decoration: none;
-}
-
-/* Сеточный стили */
-
-
-/* ------сетка Header---- */
-.main-header {
-  margin-bottom: 75px;
-
-}
- .main-navigation {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-
-   background-color: transparent;
- }
- .main-header-logo {
-   width: 368px;
-   height: 153px;
-   order: 2;
-}
-.main-navigation-wrapper {
-  width: 100%;
-  margin-bottom: 60px;
-  background-color: #000000;
-
-}
-
-/* Общий размер контента сайта */
-.conteiner {
-  width: 940px;
-  margin: 0 auto;
-  padding: 0 10px;
-
-}
-/* Делаем контейнер навигации гибким(фдекс) */
-.main-navigation-wrapper .conteiner {
-  display: flex;
-  justify-content: space-between;
-}
-/* работаем с навигацией */
-.site-navigation {
-  margin: 0;
-  padding: 0;
-  width: 620px;
-
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.user-navigation {
-  margin: 0;
-  padding: 0;
-  max-width: 140px;
-  list-style: none;
-}
-
-/* Делаем ссылки навигации блочным элементом и задаём им отсупы и цвет шрифта*/
-.site-navigation a,
-.user-navigation a {
-  display: block;
-  padding: 25px 20px;
-
-  color: #ffffff;
-}
-/* Добавляем отступ кнопке вход */
-.user-navigation .login-link {
-  position: relative;
-  padding-left: 50px;
-}
-/* Вставляем декоративную картинку рядом со словом "Вход" */
-.login-link::before {
-/* нужно чтобы появился псевдоэлемент */
-  content: "";
-/* позиционируем псевдоэлемент */
-  position: absolute;
-  top: 27px;
-  left: 24px;
-
-  width: 16px;
-  height: 18px;
-/* вставляем картинку в псевдоэлемент и задаём прозрачность */
-  background-image: url(../image/svg/login.svg);
-  background-repeat: no-repeat;
-  background-position: 0 0;
-
-  opacity: 0.3;
-}
-/* Задаём поведение этой картинке */
-.login-link:hover::before,
-.login-link:focus::before,
-.login-link:active::before {
-  opacity: 1;
-}
-
-/* ----сетка features-list -----*/
-.features {
-  margin-bottom: 80px;
-}
-.features-list {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
-
-  /* Временно для сетки */
-  min-height: 170px;
-
-}
-.features-item {
-  width: 300px;
-  /* временно для сетки */
-  min-height: 170px;
-}
-/* Задаём внешние отступы абзацам */
-.features-item p {
-  margin: 0 10px;
-}
-/* Сетка index-column */
-.index-columns {
-  display: flex;
-  justify-content: space-between;
-  padding: 50px 80px;
-  margin-bottom: 35px;
-}
-.news {
-  width: 380px;
-  /* временно для сетки */
-  min-height: 315px;
-  outline: 1px solid red;
-}
-.gallery {
-  width: 300px;
-  /* временно для сетки */
-  min-height: 315px;
-  outline: 1px solid blue;
-}
-/* сетка контакты и связь с нами */
-.contacts {
-  width: 380px;
-  /* временно для сетки */
-  min-height: 295px;
-  outline: 1px solid red;
-}
-.appointment {
-  width: 300px;
-  /* временно для сетки */
-  min-height: 340px;
-  outline: 1px solid blue;
-}
-/* -----Разметка footer----- */
-.main-footer {
-  padding: 60px 0;
-  margin-top: 65px;
-
-  /* временно для сетки */
-  min-height: 180px;
-}
-.main-footer .conteiner {
-  display: flex;
-}
-.footer-contacts {
-  width: 320px;
-  margin: 0;
-  margin-right: 80px;
-  /* временно для сетки */
-  min-height: 100px;
-  outline: 1px solid red;
-}
-.footer-social {
-  width: 145px;
-  /* временно для сетки */
-  min-height: 100px;
-  outline: 1px solid blue;
-}
-.footer-copyright {
-  width: 150px;
-  margin: 0;
-  margin-left: auto;
-  /* временно для сетки */
-  min-height: 100px;
-  outline: 1px solid red;
+    text-decoration: none;
 }
